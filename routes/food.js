@@ -2,6 +2,7 @@ const express = require('express')
 const Router = express.Router()
 const passport = require('../config/passportJWT')
 const Food = require('../models/food')
+const Restaurant = require('../models/restaurant')
 
 
 Router.post('/addFood', passport.authenticate('jwt', { failureRedirect: '/signin', session: false }), async (req, res) => {
@@ -9,7 +10,11 @@ Router.post('/addFood', passport.authenticate('jwt', { failureRedirect: '/signin
 
     try{
 
+        const restaurant = await Restaurant.findById(req.body.client)
+
         const food = await Food.create(req.body)
+        restaurant.food.push(food._id)
+        await restaurant.save()
         return res.status(200).json({
             data: food,
             message: "Food successfully added!"

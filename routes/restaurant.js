@@ -52,10 +52,9 @@ router.post('/signin', async (req, res) => {
 
 router.get('/listRestaurant', passport.authenticate('jwt', { session: false, failureRedirect: '/signin' }),
 async (req, res) => {
-    console.log('user', req.user)
 
     if(req.user) {
-        const restaurants = await Restaurant.find({})
+        const restaurants = await Restaurant.find({}).populate('food')
         return res.status(200).json({
             data: restaurants,
             message: "Success"
