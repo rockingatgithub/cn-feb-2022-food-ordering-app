@@ -25,7 +25,6 @@ router.get('/profile', passport.authenticate('jwt', {session: false}), (req, res
         user: null
     })
 
-
 } )
 
 
