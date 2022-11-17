@@ -19,6 +19,7 @@ router.post('/signup', async (req, res) => {
     return res.status(200).json({
         data: restaurant,
         token,
+        userType: "restaurant",
         message: "Success"
     })
 
@@ -40,6 +41,7 @@ router.post('/signin', async (req, res) => {
         return res.status(200).json({
             data: restaurant,
             token,
+            userType: "restaurant",
             message: "Success"
         })
     }

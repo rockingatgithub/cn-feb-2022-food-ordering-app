@@ -14,11 +14,12 @@ router.post('/signup', async (req, res) => {
 
     const user = { email: customer.email, id: customer._id }
 
-    let token = jwt.sign(user, 'my_key', { expiresIn: '1h' })
+    let token = jwt.sign(user, 'my_key', { expiresIn: '5d' })
 
     return res.status(200).json({
         data: customer,
         token,
+        userType: "customer",
         message: "Success"
     })
 
@@ -35,11 +36,12 @@ router.post('/signin', async (req, res) => {
     if(customer){
 
         const user = { email: customer.email, id: customer._id }
-        let token = jwt.sign(user, 'my_key', { expiresIn: '1h' })
+        let token = jwt.sign(user, 'my_key', { expiresIn: '5d' })
 
         return res.status(200).json({
             data: customer,
             token,
+            userType: "customer",
             message: "Success"
         })
     }
