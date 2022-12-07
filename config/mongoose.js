@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
 
-mongoose.connect('mongodb://localhost:27017/food_app')
+mongoose.connect('mongodb+srv://sudhendra:pDk85mO2m5rFo79D@cluster0.rhtev.mongodb.net/?retryWrites=true&w=majority')
 
 
 const db = mongoose.connection
