@@ -16,6 +16,8 @@ app.use(express.json())
 
 passport.initialize()
 
+// app.use((req, res, next) => { console.log('the url requested is!', req.url); next()  })
+
 app.use('/', require('./routes'))
 
 
