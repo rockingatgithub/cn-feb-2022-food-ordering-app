@@ -1,5 +1,6 @@
 const express = require('express')
 const cors = require('cors')
+const multer  = require('multer')
 // const EventEmitter = require('events').EventEmitter
 const passport = require('./config/passportJWT')
 const db = require('./config/mongoose')
@@ -8,6 +9,7 @@ const app = express()
 // const eventObj = new EventEmitter()
 const http = require('http');
 const server = http.createServer(app);
+const upload = multer({ dest: './public/data/uploads/' })
 
 
 app.use(cors())
@@ -19,6 +21,12 @@ passport.initialize()
 // app.use((req, res, next) => { console.log('the url requested is!', req.url); next()  })
 
 app.use('/', require('./routes'))
+
+app.post('/upload', upload.single('avatar'), function (req, res) {
+    // req.file is the `avatar` file
+    // req.body will hold the text fields, if there were any
+    console.log(req.file, req.body)
+  })
 
 
 // eventObj.on('my-event', function (msg) {
